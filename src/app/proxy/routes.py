@@ -200,6 +200,69 @@ async def signup_proxy(request: Request):
 
 
 
+@router.post("/api/send-reset-code")
+async def reset_code_proxy(request: Request):
+    """
+    Proxy to Node.js send reset code endpoint
+    """
+
+    reset_code_data = await request.json()
+    response = await forward_to_service(
+        "USER-SERVICE",
+        "api/auth/send-reset-code",
+        "POST",
+        reset_code_data
+    )
+
+    return Response(
+        content=json.dumps(response["data"])
+        status_code=response["status"],
+        media_type="application/json"
+    )
+
+
+@router.post("/api/verify-code")
+async def verify_code_proxy(request: Request):
+    """
+    Proxy to Node.js send reset code endpoint
+    """
+
+    verify_code_data = await request.json()
+    response = await forward_to_service(
+        "USER-SERVICE",
+        "api/auth/verify-code",
+        "POST",
+        verify_code_data
+    )
+
+    return Response(
+        content=json.dumps(response["data"])
+        status_code=response["status"],
+        media_type="application/json"
+    )
+
+
+@router.post("/api/reset-password")
+async def reset_password_proxy(request: Request):
+    """
+    Proxy to Node.js send reset code endpoint
+    """
+
+    reset_code_data = await request.json()
+    response = await forward_to_service(
+        "USER-SERVICE",
+        "api/auth/reset-password",
+        "POST",
+        reset_code_data
+    )
+
+    return Response(
+        content=json.dumps(response["data"])
+        status_code=response["status"],
+        media_type="application/json"
+    )
+
+
 
 
 @router.api_route("/{service_name}/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH"])
