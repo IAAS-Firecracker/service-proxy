@@ -263,6 +263,90 @@ async def reset_password_proxy(request: Request):
     )
 
 
+@router.post("/api/reset-password")
+async def reset_password_proxy(request: Request):
+    """
+    Proxy to Node.js send reset code endpoint
+    """
+
+    reset_code_data = await request.json()
+    response = await forward_to_service(
+        "USER-SERVICE",
+        "api/auth/reset-password",
+        "POST",
+        reset_code_data
+    )
+
+    return Response(
+        content=json.dumps(response["data"])
+        status_code=response["status"],
+        media_type="application/json"
+    )
+
+
+@router.post("/api/update-profile")
+async def update_profile_proxy(request: Request):
+    """
+    Proxy to Node.js send update profile endpoint
+    """
+
+    update_profile_data = await request.json()
+    response = await forward_to_service(
+        "USER-SERVICE",
+        "api/auth/update-profile",
+        "PATCH",
+        update_profile_data
+    )
+
+    return Response(
+        content=json.dumps(response["data"])
+        status_code=response["status"],
+        media_type="application/json"
+    )
+
+
+@router.post("/api/delete-profile")
+async def delete_profile_proxy(request: Request):
+    """
+    Proxy to Node.js send update profile endpoint
+    """
+
+    delete_profile_data = await request.json()
+    response = await forward_to_service(
+        "USER-SERVICE",
+        "api/auth/delete-profile",
+        "DELETE",
+        delete_profile_data
+    )
+
+    return Response(
+        content=json.dumps(response["data"])
+        status_code=response["status"],
+        media_type="application/json"
+    )
+
+
+@router.post("/api/change-password")
+async def change_password_proxy(request: Request):
+    """
+    Proxy to Node.js send update profile endpoint
+    """
+
+    change_password_data = await request.json()
+    response = await forward_to_service(
+        "USER-SERVICE",
+        "api/auth/change-password",
+        "PATCH",
+        change_password_data
+    )
+
+    return Response(
+        content=json.dumps(response["data"])
+        status_code=response["status"],
+        media_type="application/json"
+    )
+
+
 
 
 @router.api_route("/{service_name}/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH"])
