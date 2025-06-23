@@ -27,7 +27,7 @@ PROXY_RESERVED_PARAMS = {'lb_strategy'}  # Parameters the proxy uses internally
 # Public endpoints that don't require authentication
 PUBLIC_ENDPOINTS = {
     ("USER-SERVICE", "api/auth/login"),
-    ("USER-SERVICE", "api/auth/signup"),
+    ("USER-SERVICE", "api/auth/signup")
 }
 
 
@@ -215,7 +215,7 @@ async def reset_code_proxy(request: Request):
     )
 
     return Response(
-        content=json.dumps(response["data"])
+        content=json.dumps(response["data"]),
         status_code=response["status"],
         media_type="application/json"
     )
@@ -236,7 +236,7 @@ async def verify_code_proxy(request: Request):
     )
 
     return Response(
-        content=json.dumps(response["data"])
+        content=json.dumps(response["data"]),
         status_code=response["status"],
         media_type="application/json"
     )
@@ -257,7 +257,7 @@ async def reset_password_proxy(request: Request):
     )
 
     return Response(
-        content=json.dumps(response["data"])
+        content=json.dumps(response["data"]),
         status_code=response["status"],
         media_type="application/json"
     )
