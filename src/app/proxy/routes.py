@@ -278,7 +278,7 @@ async def reset_password_proxy(request: Request):
     )
 
     return Response(
-        content=json.dumps(response["data"])
+        content=json.dumps(response["data"]),
         status_code=response["status"],
         media_type="application/json"
     )
@@ -299,7 +299,7 @@ async def update_profile_proxy(request: Request):
     )
 
     return Response(
-        content=json.dumps(response["data"])
+        content=json.dumps(response["data"]),
         status_code=response["status"],
         media_type="application/json"
     )
@@ -320,7 +320,7 @@ async def delete_profile_proxy(request: Request):
     )
 
     return Response(
-        content=json.dumps(response["data"])
+        content=json.dumps(response["data"]),
         status_code=response["status"],
         media_type="application/json"
     )
@@ -341,7 +341,7 @@ async def change_password_proxy(request: Request):
     )
 
     return Response(
-        content=json.dumps(response["data"])
+        content=json.dumps(response["data"]),
         status_code=response["status"],
         media_type="application/json"
     )
