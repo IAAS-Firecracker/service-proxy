@@ -28,12 +28,9 @@ PROXY_RESERVED_PARAMS = {'lb_strategy'}  # Parameters the proxy uses internally
 PUBLIC_ENDPOINTS = {
     ("USER-SERVICE", "api/auth/login"),
     ("USER-SERVICE", "api/auth/signup"),
-    ("USER-SERVICE", "api/auth/send-reset-code"),
-    ("USER-SERVICE", "api/auth/verify-code"),
-    ("USER-SERVICE", "api/auth/reset-password"),
-    ("USER-SERVICE", "api/auth/verify-code"),
-
-
+    ("USER-SERVICE", "api/auth/users/send-reset-code"),
+    ("USER-SERVICE", "api/auth/users/verify-code"),
+    ("USER-SERVICE", "api/auth/users/reset-password")
 }
 
 
