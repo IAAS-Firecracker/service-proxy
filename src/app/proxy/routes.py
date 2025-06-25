@@ -375,7 +375,7 @@ async def proxy_request(
             logger.error(f"No instances available for service: {service_name}")
             raise HTTPException(
                 status_code=404,
-                detail={"error": "service_unavailable", "service": service_name}
+                detail={"error": "service_unavailable", "service": service_name }
             )
         
         # Prepare instances for load balancing (your existing code)
@@ -394,7 +394,7 @@ async def proxy_request(
         if not instance:
             raise HTTPException(
                 status_code=503,
-                detail={"error": "no_available_instances", "service": service_name}
+                detail={"error": "no_available_instances", "service": service_name, "instances": instances}
             )
         
         # Update stats (your existing code)
@@ -409,6 +409,7 @@ async def proxy_request(
         
         # Build target URL (modified to handle auth)
         target_url = f"http://{instance.hostName}:{instance.port.port}{prepare_target_url(modified_path, query_params)}"
+        # target_url = f"http://host.docker.internal:{instance.port.port}{prepare_target_url(modified_path, query_params)}"
         
         # Forward headers (modified to include user context)
         headers = {
@@ -523,7 +524,7 @@ async def forward_to_service(service_name: str, path: str, method: str, data: di
         logger.error(f"No instances available for service: {service_name}")
         raise HTTPException(
             status_code=404,
-            detail={"error": "service_unavailable", "service": service_name}
+            detail={"error": "service_unavailable", "service": service_name, "UP INSTANCES": app.up_instances}
         )
     
     # Prepare instances for load balancing (your existing code)
