@@ -293,7 +293,7 @@ async def update_profile_proxy(request: Request):
     update_profile_data = await request.json()
     response = await forward_to_service(
         "USER-SERVICE",
-        "api/auth/update-profile",
+        "api/users/current/update-profile",
         "PATCH",
         update_profile_data
     )
@@ -314,7 +314,7 @@ async def delete_profile_proxy(request: Request):
     delete_profile_data = await request.json()
     response = await forward_to_service(
         "USER-SERVICE",
-        "api/auth/delete-profile",
+        "api/users/current/delete-profile",
         "DELETE",
         delete_profile_data
     )
@@ -335,7 +335,7 @@ async def change_password_proxy(request: Request):
     change_password_data = await request.json()
     response = await forward_to_service(
         "USER-SERVICE",
-        "api/auth/change-password",
+        "api/users/current/change-password",
         "PATCH",
         change_password_data
     )
