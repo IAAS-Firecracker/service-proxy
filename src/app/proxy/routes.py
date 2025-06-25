@@ -27,7 +27,13 @@ PROXY_RESERVED_PARAMS = {'lb_strategy'}  # Parameters the proxy uses internally
 # Public endpoints that don't require authentication
 PUBLIC_ENDPOINTS = {
     ("USER-SERVICE", "api/auth/login"),
-    ("USER-SERVICE", "api/auth/signup")
+    ("USER-SERVICE", "api/auth/signup"),
+    ("USER-SERVICE", "api/auth/send-reset-code"),
+    ("USER-SERVICE", "api/auth/verify-code"),
+    ("USER-SERVICE", "api/auth/reset-password"),
+    ("USER-SERVICE", "api/auth/verify-code"),
+
+
 }
 
 
@@ -233,27 +239,6 @@ async def verify_code_proxy(request: Request):
         "api/auth/verify-code",
         "POST",
         verify_code_data
-    )
-
-    return Response(
-        content=json.dumps(response["data"]),
-        status_code=response["status"],
-        media_type="application/json"
-    )
-
-
-@router.post("/api/reset-password")
-async def reset_password_proxy(request: Request):
-    """
-    Proxy to Node.js send reset code endpoint
-    """
-
-    reset_code_data = await request.json()
-    response = await forward_to_service(
-        "USER-SERVICE",
-        "api/auth/reset-password",
-        "POST",
-        reset_code_data
     )
 
     return Response(
