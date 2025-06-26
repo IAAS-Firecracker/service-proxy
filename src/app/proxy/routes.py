@@ -21,7 +21,7 @@ router = APIRouter()
 settings = Settings()
 
 # Configuration
-REQUEST_TIMEOUT = 10  # seconds
+REQUEST_TIMEOUT = 120  # seconds
 PROXY_RESERVED_PARAMS = {'lb_strategy'}  # Parameters the proxy uses internally
 
 # Public endpoints that don't require authentication
@@ -413,7 +413,7 @@ async def proxy_request(
         # Convert user object to string if present
         if hasattr(request.state, "user"):
             user_data = request.state.user
-            print("user_data", user_data)
+            # print("user_data", user_data)
             headers["X-User-Id"] = str(user_data.get("user_id", ""))
             headers["X-User-Email"] = user_data.get("email", "")
             headers["X-User-Role"] = user_data.get("role", "")
