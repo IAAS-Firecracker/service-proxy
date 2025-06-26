@@ -27,7 +27,7 @@ PROXY_RESERVED_PARAMS = {'lb_strategy'}  # Parameters the proxy uses internally
 # Public endpoints that don't require authentication
 PUBLIC_ENDPOINTS = {
     ("USER-SERVICE", "api/auth/login"),
-    ("USER-SERVICE", "api/auth/signup"),
+    ("USER-SERVICE", "api/auth/register"),
     ("USER-SERVICE", "api/auth/users/send-reset-code"),
     ("USER-SERVICE", "api/auth/users/verify-code"),
     ("USER-SERVICE", "api/auth/users/reset-password")
@@ -413,7 +413,8 @@ async def proxy_request(
         # Convert user object to string if present
         if hasattr(request.state, "user"):
             user_data = request.state.user
-            headers["X-User-Id"] = str(user_data.get("id", ""))
+            print("user_data", user_data)
+            headers["X-User-Id"] = str(user_data.get("user_id", ""))
             headers["X-User-Email"] = user_data.get("email", "")
             headers["X-User-Role"] = user_data.get("role", "")
 
